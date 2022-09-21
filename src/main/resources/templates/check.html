@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    var data=[
+        {"id":1,"dateBegin":"2019-12-31T21:00:00.000+00:00","dateEnd":"2021-01-01T21:00:00.000+00:00","count":16.0,"subject":{"id":1,"name":"АИЯП"},"group":{"id":1,"name":"КМ-1","count":17},"typeWork":{"id":1,"name":"лекции","shortName":"лк"},"sortWork":{"id":1,"name":"осн"}},
+        {"id":2,"dateBegin":"2019-12-31T21:00:00.000+00:00","dateEnd":"2021-01-01T21:00:00.000+00:00","count":32.0,"subject":{"id":1,"name":"АИЯП"},"group":{"id":1,"name":"КМ-1","count":17},"typeWork":{"id":1,"name":"лекции","shortName":"лк"},"sortWork":{"id":1,"name":"осн"}},
+        {"id":3,"dateBegin":"2019-12-31T21:00:00.000+00:00","dateEnd":"2021-02-09T21:00:00.000+00:00","count":16.0,"subject":{"id":1,"name":"АИЯП"},"group":{"id":1,"name":"КМ-1","count":17},"typeWork":{"id":1,"name":"лекции","shortName":"лк"},"sortWork":{"id":1,"name":"осн"}},
+        {"id":36,"dateBegin":"2022-09-23T21:00:00.000+00:00","dateEnd":"2022-09-24T21:00:00.000+00:00","count":4.0,"subject":{"id":2,"name":"Мехатроника"},"group":{"id":2,"name":"КМ-2","count":19},"typeWork":{"id":3,"name":"лабораторные","shortName":"лб"},"sortWork":{"id":1,"name":"осн"}},
+        {"id":46,"dateBegin":"2022-09-17T21:00:00.000+00:00","dateEnd":"2022-09-17T21:00:00.000+00:00","count":2.0,"subject":{"id":1,"name":"АИЯП"},"group":{"id":1,"name":"КМ-1","count":17},"typeWork":{"id":2,"name":"практические","shortName":"пр"},"sortWork":{"id":1,"name":"осн"}}];
+
+    var arr = [
+        { name: "A", value: 10 },
+        { name: "B", value: 20 },
+        { name: "C", value: 30 },
+        { name: "A", value: 40 },
+        { name: "B", value: 50 },
+        { name: "C", value: 60 }];
+
+    var accumulated = arr.reduce(function(accumulator, element) {
+        var currentValue = accumulator[element.name];
+
+        if(currentValue !== undefined) {
+            accumulator[element.name] = currentValue + element.value;
+        }
+        else {
+            accumulator[element.name] = element.value;
+        }
+        return accumulator;
+    }, {});
+
+    var result = Object.keys(accumulated).map(function(k) {return {name: k, value: accumulated[k]}})
+    console.log(result)
+</script>
+</body>
+</html>
