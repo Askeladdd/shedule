@@ -1,8 +1,6 @@
 package org.itstep.shedulerest.controller;
 
 import org.itstep.shedulerest.model.Group;
-import org.itstep.shedulerest.model.Plan;
-import org.itstep.shedulerest.model.Subject;
 import org.itstep.shedulerest.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

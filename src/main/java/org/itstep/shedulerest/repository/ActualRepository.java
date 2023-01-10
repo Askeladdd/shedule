@@ -2,12 +2,12 @@ package org.itstep.shedulerest.repository;
 
 import org.itstep.shedulerest.model.Actual;
 import org.itstep.shedulerest.model.ActualGroup;
-import org.itstep.shedulerest.model.Plan;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -20,4 +20,12 @@ public interface ActualRepository extends JpaRepository<Actual, Long> {
     @Query("select actual from Actual actual \n" +
             "where actual.sortWork.id=:sort_id and actual.subject.id=:subject_id and actual.group.id=:group_id and actual.typeWork.id=:type_id")
     public List<Actual> findBySortSubjectGroupType(@Param("sort_id") Long sort_id, @Param("subject_id") Long subject_id, @Param("group_id") Long group_id, @Param("type_id") Long type_id);
+
+    @Query("select actual from Actual actual \n" +
+            "where actual.sortWork.id=:sort_id and actual.date>=:dateStart and actual.date<=:dateEnd order by actual.date")
+    public List<Actual>findBySort(Long sort_id, Date dateStart, Date dateEnd);
+
+    @Query("select actual from Actual actual \n" +
+            "where actual.sortWork.id=:sort_id and actual.subject.id=:subject_id and actual.group.id=:group_id and actual.date>=:dateStart and actual.date<=:dateEnd order by actual.date")
+    public List<Actual>findByGroup(Long sort_id, Long subject_id, Long group_id, Date dateStart, Date dateEnd);
 }

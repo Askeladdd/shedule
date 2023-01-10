@@ -1,13 +1,13 @@
 entity='typework';
 show();
 
-function show() {
+async function show() {
     let requestOptions = {
         method: 'GET',
         redirect: 'follow'
     };
 
-    fetch(`${url}/${entity}`, requestOptions)
+    await fetch(`${url}/${entity}`, requestOptions)
         .then(response => response.json())
         .then(response => addRows(response))
         .catch(error => console.log(`${entity} - error in find all`, error));
@@ -37,12 +37,12 @@ function show() {
         }
 }
 
+$(document).off("click");
 $(document).on("click", `#add_${entity} #save`, async function () {
         let name = $("#name").val();
         let shortName = $("#shortName").val();
         //console.log(name)
-        const res = await
-            fetch(`${url}/${entity}`,
+        const res = await fetch(`${url}/${entity}`,
                 {
                     method: "POST",
                     headers: {'Content-Type': 'application/json'},
@@ -69,10 +69,10 @@ $(document).on("click", `#delete_${entity} #delete`, async function () {
     show();
 });
 
-$(document).on("click", `.update_${entity}`, function(){
+$(document).on("click", `.update_${entity}`, async function(){
     let id = $(this).attr("id");
     //console.log(id)
-    fetch(`${url}/${entity}/${id}`, {
+    await fetch(`${url}/${entity}/${id}`, {
         method: 'GET',
         redirect: 'follow'
     })

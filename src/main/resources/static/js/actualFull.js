@@ -1,10 +1,10 @@
 entity = 'actual';
-var sortIds = [], subjectIds = [], groupIds = [], typeIds = [];
+var sortIds = [], subjectIds = [], groupIds = [], typeIds = [], sums=[];
 var responseActual;
 show();
 
 async function show() {
-    sortIds = [], subjectIds = [], groupIds = [], typeIds = [];
+    sortIds = [], subjectIds = [], groupIds = [], typeIds = [], sums=[];
 
     let requestOptions = {
         method: 'GET',
@@ -65,11 +65,11 @@ function addRows(response) {
         tr.append($('<td>').html(selectSubject));
         tr.append($('<td>').html(selectGroup));
         tr.append($('<td>').html(selectType));
-        tr.append($('<td>').html(response[i].count));
+        tr.append($('<td>').html(Math.round(response[i].count * 100) / 100));
 
         let tdActions = $('<td>');
         tdActions.html(`<div class="container">  
-                <button type="button" class="btn btn-outline-danger btn-sm delete_${entity}" data-mdb-toggle="modal" data-mdb-target="#delete_${entity}" id="${id}">Delete</button>
+                <button type="button" class="btn btn-outline-danger btn-sm delete_actual_full" data-mdb-toggle="modal" data-mdb-target="#delete_${entity}_full" id="${id}">Delete</button>
                 </div>
             `);
         tr.append(tdActions);
@@ -129,15 +129,18 @@ function addGroups(response) {
         $(`[id^=group${i}]`).val(groupIds[i]);
 }
 
-$(document).on("click", `.delete_${entity}`, function () {
+$(document).off("click");
+$(document).on("click", `.delete_actual_full`, function () {
+    //console.log('ok')
     let id = $(this).attr("id");
     //console.log(id);
-    $(`#delete_${entity}`).val(id);
+    $(`#delete_${entity}_full`).val(id);
     //console.log($(`#delete_${entity}`));
 });
 
-$(document).on("click", `#delete_${entity} #delete`, async function () {
-    let id = $(`#delete_${entity}`).val();
+$(document).on("click", `#delete_actual_full #delete`, async function () {
+    console.log('ok')
+    let id = $(`#delete_${entity}_full`).val();
     let sortId = sortIds[id];
     let subjectId = subjectIds[id];
     let groupId = groupIds[id];
@@ -153,8 +156,7 @@ $(document).on("click", `#delete_${entity} #delete`, async function () {
     await show();
 });
 
-$(document).on("click", `#add_${entity} #add`, async function () {
-
+$(document).on("click", `#add_${entity}_full #add`, async function () {
     let sortId = $("#sortworkCreated option:selected").val();
     let groupId = $("#groupCreated option:selected").val();
     let subjectId = $("#subjectCreated option:selected").val();
@@ -170,8 +172,7 @@ $(document).on("click", `#add_${entity} #add`, async function () {
     let diff = option?7:14;
 
     while (moment(date).isBefore(dateEnd)){
-        await
-            fetch(`${url}/${entity}`,
+        await fetch(`${url}/${entity}`,
                 {
                     method: "POST",
                     headers: {'Content-Type': 'application/json'},
@@ -179,8 +180,6 @@ $(document).on("click", `#add_${entity} #add`, async function () {
                 });
         date = moment(date).add(diff, 'd').toDate();
     }
-
-    show();
-
+    await show();
 });
 

@@ -1,9 +1,6 @@
 package org.itstep.shedulerest.controller;
 
-import org.itstep.shedulerest.model.Content;
 import org.itstep.shedulerest.model.Subject;
-import org.itstep.shedulerest.model.TypeWork;
-import org.itstep.shedulerest.service.ContentService;
 import org.itstep.shedulerest.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

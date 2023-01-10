@@ -3,7 +3,6 @@ package org.itstep.shedulerest.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.tomcat.jni.Address;
 
 import javax.persistence.*;
 
@@ -11,20 +10,21 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "content")
-public class Content {
+@Table(name = "mark")
+public class Mark {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String theme;
-    private int count;
+
+    private Integer mark;
+    private Boolean presence;
 
     @OneToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "subjectId", referencedColumnName = "id")
-    private Subject subject;
+    @JoinColumn(name = "studentId", referencedColumnName = "id")
+    private Student student;
 
     @OneToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "typeId", referencedColumnName = "id")
-    private TypeWork typeWork;
+    @JoinColumn(name = "actualId", referencedColumnName = "id")
+    private Actual actual;
 }

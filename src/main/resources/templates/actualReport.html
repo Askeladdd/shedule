@@ -1,0 +1,68 @@
+
+<div class="container" id="container">
+    <div id="navbar"></div>
+<script>$('#navbar').load("actualNavbar.html");</script>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Subject</th>
+            <th>Group</th>
+            <th>Type</th>
+            <th>Count</th>
+        </tr>
+        </thead>
+        <tbody id="data"></tbody>
+    </table>
+
+<!-- Modal Add-->
+<div class="modal fade" id="add_actual" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Choose date</h5>
+                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close" id="close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-outline">
+                    <input type="date" id="dateStart" class="form-control mb-3"/>
+                    <label class="form-label" for="dateStart">Date start</label>
+                </div>
+                <div class="form-outline">
+                    <input type="date" id="dateEnd" class="form-control mb-3"/>
+                    <label class="form-label" for="dateEnd">Date end</label>
+                </div>
+                <select class="form-select mb-3" aria-label="Sortwork" id="sortwork">
+                    <option selected>Choose a sort of work</option>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal" id="cancel">Cancel</button>
+                <button type="button" class="btn btn-primary" id="ok" data-mdb-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+var myModal = new bootstrap.Modal(document.getElementById('add_actual'), {
+keyboard: false
+})
+myModal.show();
+
+</script>
+<script type="text/javascript" src="../static/js/actualReport.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"></script>
+
+<script>
+    $(document).on("click", '#cancel', function () {
+        myModal.hide();
+    });
+    $(document).on("click", '#close', function () {
+        myModal.hide();
+    });
+    $(document).on("click", '#ok', function () {
+        myModal.hide();
+    });
+</script>
+

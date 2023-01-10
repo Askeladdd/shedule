@@ -3,11 +3,13 @@ package org.itstep.shedulerest.controller;
 import org.itstep.shedulerest.model.Actual;
 import org.itstep.shedulerest.model.ActualGroup;
 import org.itstep.shedulerest.model.ActualRequest;
-import org.itstep.shedulerest.model.Plan;
 import org.itstep.shedulerest.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -77,6 +79,32 @@ public class ActualController {
     @GetMapping(value="/actual/sort/{sortId}/subject/{subjectId}/group/{groupId}/type/{typeId}")
     public List<Actual> findBySortSubjectGroup(@PathVariable Long sortId, @PathVariable Long subjectId, @PathVariable Long groupId, @PathVariable Long typeId){
         return service.findBySortSubjectGroupType(sortId, subjectId, groupId, typeId);
+    }
+
+    @GetMapping(value="/actual/sort/{sortId}/dateStart/{dateStart}/dateEnd/{dateEnd}")
+    public List<Actual> findBySort(@PathVariable Long sortId, @PathVariable String dateStart, @PathVariable String dateEnd){
+        Date dateStartF= null;
+        Date dateEndF= null;
+        try {
+            dateStartF = new SimpleDateFormat("yyyy-MM-dd").parse(dateStart);
+            dateEndF = new SimpleDateFormat("yyyy-MM-dd").parse(dateEnd);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return service.findBySort(sortId, dateStartF, dateEndF);
+    }
+
+    @GetMapping(value="/actual/sort/{sortId}/subject/{subjectId}/group/{groupId}/dateStart/{dateStart}/dateEnd/{dateEnd}")
+    public List<Actual> findByGroup(@PathVariable Long sortId, @PathVariable Long subjectId, @PathVariable Long groupId, @PathVariable String dateStart, @PathVariable String dateEnd){
+        Date dateStartF= null;
+        Date dateEndF= null;
+        try {
+            dateStartF = new SimpleDateFormat("yyyy-MM-dd").parse(dateStart);
+            dateEndF = new SimpleDateFormat("yyyy-MM-dd").parse(dateEnd);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return service.findByGroup(sortId, subjectId, groupId, dateStartF, dateEndF);
     }
 
     @DeleteMapping(value="/actual/sort/{sortId}/subject/{subjectId}/group/{groupId}/type/{typeId}")

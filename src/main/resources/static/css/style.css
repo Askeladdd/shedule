@@ -110,7 +110,7 @@ a {
 .nav_link {
     position: relative;
     color: var(--first-color-light);
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
     transition: .3s
 }
 
@@ -194,4 +194,68 @@ select{
 
 .max-width{
     max-width: 120px;
+    margin:4px;
+}
+
+.min-width{
+    min-width: 120px;
+    width:7rem;
+}
+
+.th-rotate{
+    color: #4723D9;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    margin:0;
+    border-left:1px solid #243175;
+    border-right:1px solid #243175;
+}
+
+#classJob{
+    table-layout: fixed;
+    width: fit-content;
+    border-collapse: collapse;
+}
+
+.td-border{
+    border-left:1px solid #243175;
+    border-right:1px solid #243175;
+    text-align: center;
+}
+
+.table tbody, td, tfoot, th, thead, tr{
+    border:0;
+}
+
+.add_mark{
+    padding:0;
+    border: 1px black solid;
+}
+
+.container{
+    padding:0;
+}
+
+.present{
+    background-color: #99ce67;
+}
+
+.missing{
+    background-color: #ce5143;
+}
+
+.select-mark{
+    min-width:10px;
+    width:18px;
+    border-radius: 5px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-overflow: '';
+    text-align:center;
+}
+
+select option[disabled] {
+    display: none;
 }

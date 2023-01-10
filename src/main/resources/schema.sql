@@ -92,5 +92,3 @@ CREATE TABLE student (
                       PRIMARY KEY (id),
                       FOREIGN KEY ( group_id ) REFERENCES groupp ( id )
 );
-
-

@@ -1,7 +1,5 @@
 package org.itstep.shedulerest.service;
 
-import org.itstep.shedulerest.model.Plan;
-import org.itstep.shedulerest.model.Subject;
 import org.itstep.shedulerest.model.TypeWork;
 import org.itstep.shedulerest.repository.TypeWorkRepository;
 import org.springframework.beans.factory.annotation.Autowired;

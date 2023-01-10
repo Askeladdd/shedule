@@ -54,14 +54,14 @@ function addGroups(response) {
 }
 }
 
+$(document).off("click");
 $(document).on("click", `#add_${entity} #save`, async function () {
         let surname = $("#surname").val();
         let name = $("#name").val();
         let patronymic = $("#patronymic").val();
         let groupId = $("#group option:selected").val();
         console.log(groupId)
-        const res = await
-            fetch(`${url}/${entity}`,
+        const res = await fetch(`${url}/${entity}`,
                 {
                     method: "POST",
                     headers: {'Content-Type': 'application/json'},
@@ -79,7 +79,7 @@ $(document).on("click", `.delete_${entity}`, function(){
 });
 
 $(document).on("click", `#delete_${entity} #delete`, async function () {
-    console.log('ok')
+    //console.log('ok')
     let id = $(`#delete_${entity}`).val();
     //console.log(id)
     const res = await fetch(`${url}/${entity}/${id}`,

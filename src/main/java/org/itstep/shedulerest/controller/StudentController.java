@@ -29,6 +29,11 @@ public class StudentController {
         return service.findById(id);
     }
 
+    @GetMapping(value="/student/group/{group_id}")
+    public List<Student> findByGroupId(@PathVariable Long group_id){
+        return service.findByGroupId(group_id);
+    }
+
     @PostMapping(value="/student")
     Student create(@RequestBody StudentRequest studentRequest) {
         Student student = new Student();
